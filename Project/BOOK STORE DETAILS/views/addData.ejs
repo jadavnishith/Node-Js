@@ -4,187 +4,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Book Store</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #f9f9f9;
             color: #333;
         }
 
-        form {
-            margin-bottom: 20px;
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 50px auto;
             padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 40%;
-            border-collapse: collapse;
-            margin: auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        table {
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        form fieldset {
+            border: none;
+        }
+
+        form legend {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        form table {
             width: 100%;
-            border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
         form table td {
-            padding: 10px;
+            padding: 15px;
             vertical-align: middle;
         }
 
-        form input[type="text"],
-        form select {
+        input[type="text"],
+        select,
+        input[type="radio"] {
             width: 100%;
-            padding: 8px;
-            margin: 5px 0;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            font-size: 16px;
             box-sizing: border-box;
         }
 
-        form input[type="radio"] {
-            margin-right: 5px;
+        input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
         }
 
-        form button {
+        button {
             background-color: #28a745;
-            color: #ffffff;
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
             border: none;
-            padding: 10px 15px;
+            border-radius: 6px;
             cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
 
-        form button:hover {
+        button:hover {
             background-color: #218838;
         }
 
         table.outputData {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
         }
 
         table.outputData th,
         table.outputData td {
+            padding: 15px;
             text-align: left;
-            padding: 10px;
             border: 1px solid #ddd;
         }
 
         table.outputData th {
-            background-color: #f8f9fa;
-            font-weight: bold;
+            background-color: #f1f1f1;
+            font-size: 1rem;
+            color: #333;
         }
 
         table.outputData tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
 
         table.outputData tr:hover {
-            background-color: #e9ecef;
+            background-color: #f1f1f1;
         }
 
-        table.outputData a button {
+        table.outputData button {
             background-color: #007bff;
             color: white;
-            border: none;
-            padding: 8px 12px;
+            padding: 10px 20px;
+            font-size: 14px;
             cursor: pointer;
             border-radius: 4px;
-            font-size: 14px;
+            transition: background-color 0.3s ease;
         }
 
-        table.outputData a button:hover {
+        table.outputData button:hover {
             background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            form {
+                padding: 20px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <form action="/insertAddData" method="post">
-        <fieldset>
-            <legend>Book Store</legend>
-            <table>
+
+    <div class="container">
+        <h1>Book Store</h1>
+
+        <form action="/insertAddData" method="post">
+            <fieldset>
+                <legend>Add New Book</legend>
+                <table>
+                    <tr>
+                        <td><label for="bookname">Book Name:</label></td>
+                        <td><input type="text" id="bookname" name="bookname" placeholder="Enter Book Name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="price">Price:</label></td>
+                        <td><input type="text" id="price" name="price" placeholder="Enter Book Price" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="section">Section:</label></td>
+                        <td>
+                            <input type="radio" name="section" value="A" id="sectionA" required> A
+                            <input type="radio" name="section" value="B" id="sectionB"> B
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="Category">Category:</label></td>
+                        <td>
+                            <select name="Category" id="Category" required>
+                                <option value="">Select Category</option>
+                                <option value="Science fiction">Science fiction</option>
+                                <option value="Adventure fiction">Adventure fiction</option>
+                                <option value="Autobiography">Autobiography</option>
+                                <option value="Mystery">Mystery</option>
+                                <option value="Thriller">Thriller</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">
+                            <button type="submit">Add Book</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+
+        <table class="outputData">
+            <thead>
                 <tr>
-                    <td><label for="">Book Name :</label></td>
-                    <td> <input type="text" placeholder="Enter Book Name " name="bookname"></td>
+                    <th>Book Name</th>
+                    <th>Price</th>
+                    <th>Section</th>
+                    <th>Category</th>
+                    <th>Action</th>
                 </tr>
-                <tr>
-                    <td> <label for="">Price :</label></td>
-                    <td><input type="text" placeholder="Enter Book Price " name="price"></td>
-                </tr>
-                <tr>
-                    <td><label for="">Section : </label></td>
-                    <td>
-                        <input type="radio" name="section" value="A" />A
-                        <input type="radio" name="section" value="B" />B
-                    </td>
-                </tr>
-                <tr>
-                    <td>Category :</td>
-                    <td>
-                        <select name="Category" id="">
-                            <option value="">Select Category</option>
-                            <option value="Science fiction">Science fiction</option>
-                            <option value="Adventure fiction">Adventure fiction</option>
-                            <option value="Autobiography">Autobiography</option>
-                            <option value="Mystery">Mystery</option>
-                            <option value="Thriller">Thriller</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="submit">ADD Data</button>
-                    </td>
-                </tr>
-            </table>
+            </thead>
+            <tbody>
+                <% userData.map((data) => { %>
+                    <tr>
+                        <td><%= data.bookname %></td>
+                        <td><%= data.price %></td>
+                        <td><%= data.section %></td>
+                        <td><%= data.Category %></td>
+                        <td>
+                            <a href="/deleteData/<%= data.id %>">
+                                <button>Delete</button>
+                            </a>
+                            <a href="/editData/<%= data.id %>">
+                                <button>Edit</button>
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
 
-
-
-        </fieldset>
-    </form>
-
-    <table class="outputData" border="" cellpadding="6">
-
-        <tr>
-            <td>Book Name</td>
-            <td>Price</td>
-            <td>Section</td>
-            <td>Category</td>
-            <td>Action</td>
-        </tr>
-
-        <% userData.map((data)=>{ %>
-
-            <tr>
-                <td>
-                    <%= data.bookname %>
-                </td>
-                <td>
-                    <%= data.price %>
-                </td>
-                <td>
-                    <%= data.section %>
-                </td>
-                <td>
-                    <%= data.Category %>
-                </td>
-                <td>
-                    <a href="/deleteData/<%= data.id %>"> <button>Delete</button></a>
-                    <a href="/editData/<%= data.id %>"> <button>Edit</button></a>
-                </td>
-            </tr>
-            <% }) %>
-    </table>
 </body>
 
 </html>

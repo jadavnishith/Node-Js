@@ -4,102 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Book Store Edit</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
             color: #333;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3e50;
         }
 
         form {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 40%;
-            border-collapse: collapse;
-            margin: auto;
+            margin-top: 20px;
         }
 
-        form table td {
-            padding: 10px;
+        table {
+            width: 100%;
+            border-spacing: 10px;
+        }
+
+        table td {
+            padding: 8px;
             vertical-align: middle;
         }
 
-        form input[type="text"],
-        form select {
+        table input[type="text"],
+        table select,
+        table input[type="radio"] {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
             margin: 5px 0;
+            border-radius: 6px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            font-size: 14px;
             box-sizing: border-box;
         }
 
-        form input[type="radio"] {
-            margin-right: 5px;
+        table input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
         }
 
         form button {
-            background-color: #28a745;
-            color: #ffffff;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
             font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         form button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
+        }
+
+        table td label {
+            font-weight: bold;
+        }
+
+        table select {
+            height: 40px;
+        }
+
+        table input[type="radio"] {
+            margin-right: 10px;
         }
     </style>
 </head>
 
 <body>
-    <form action="/updateData/<%= storeData.id %>" method="post">
-        <table>
-            <tr>
-                <td><label for="">Book Name :</label></td>
-                <td> <input type="text" placeholder="Enter Book Name" value="<%= storeData.bookname %>" name="bookname"></td>
-            </tr>
-            <tr>
-                <td> <label for="">Price :</label></td>
-                <td><input type="text" placeholder="Enter Book Price" value="<%= storeData.price %>"  name="price"></td>
-            </tr>
-            <tr>
-                <td><label for="">Section : </label></td>
-                <td>
-                    <input type="radio" name="section" value="A" <%= storeData.section.includes("A") ? "checked" : "" %> />A
-                    <input type="radio" name="section" value="B" <%= storeData.section.includes("B") ? "checked" : "" %>/>B
-                </td>
-            </tr>
-            <tr>
-                <td>Category</td>
-                <td>
-                    <select name="Category" id="">
-                        <option value="">Select Category</option>
-                        <option value="Science fiction"  <%= storeData.Category === "Science fiction" ? "selected" : "" %>>Science fiction</option>
-                        <option value="Adventure fiction"<%= storeData.Category === "Adventure fiction" ? "selected" : "" %>>Adventure fiction</option>
-                        <option value="Autobiography"    <%= storeData.Category === "Autobiography" ? "selected" : "" %>>Autobiography</option>
-                        <option value="Mystery"  <%= storeData.Category === "Mystery" ? "selected" : "" %>>Mystery</option>
-                        <option value="Thriller" <%= storeData.Category === "Thriller" ? "selected" : "" %>>Thriller</option>
-                    </select>
-                </td>
-            </tr>
-
-            <tr>
-                <td><button type="submit">Update Data</button></td>
-            </tr>
-        </table>
-    </form>
+    <div class="container">
+        <h1>Edit Book Details</h1>
+        <form action="/updateData/<%= storeData.id %>" method="post">
+            <table>
+                <tr>
+                    <td><label for="bookname">Book Name:</label></td>
+                    <td><input type="text" id="bookname" placeholder="Enter Book Name" value="<%= storeData.bookname %>" name="bookname" required></td>
+                </tr>
+                <tr>
+                    <td><label for="price">Price:</label></td>
+                    <td><input type="text" id="price" placeholder="Enter Book Price" value="<%= storeData.price %>" name="price" required></td>
+                </tr>
+                <tr>
+                    <td><label>Section:</label></td>
+                    <td>
+                        <input type="radio" name="section" value="A" <%= storeData.section.includes("A") ? "checked" : "" %> />A
+                        <input type="radio" name="section" value="B" <%= storeData.section.includes("B") ? "checked" : "" %> />B
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Category">Category:</label></td>
+                    <td>
+                        <select name="Category" id="Category">
+                            <option value="">Select Category</option>
+                            <option value="Science fiction" <%= storeData.Category === "Science fiction" ? "selected" : "" %>>Science fiction</option>
+                            <option value="Adventure fiction" <%= storeData.Category === "Adventure fiction" ? "selected" : "" %>>Adventure fiction</option>
+                            <option value="Autobiography" <%= storeData.Category === "Autobiography" ? "selected" : "" %>>Autobiography</option>
+                            <option value="Mystery" <%= storeData.Category === "Mystery" ? "selected" : "" %>>Mystery</option>
+                            <option value="Thriller" <%= storeData.Category === "Thriller" ? "selected" : "" %>>Thriller</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button type="submit">Update Data</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
+
 </html>
