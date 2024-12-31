@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <%- include('partials/navbar') %>
+    
+    <div class="container mx-auto mt-8 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h1 class="text-4xl font-bold mb-6">Welcome to Task Manager</h1>
+            
+            <% if (!user) { %>
+                <div class="mb-8">
+                    <p class="text-xl mb-6">Please login or register to manage your tasks</p>
+                    <div class="space-x-4">
+                        <a href="/auth/login" 
+                           class="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+                            Login
+                        </a>
+                        <a href="/auth/register" 
+                           class="inline-block bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600">
+                            Register
+                        </a>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="mb-8">
+                    <p class="text-xl mb-6">Manage your tasks efficiently</p>
+                    <a href="/tasks" 
+                       class="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+                        View My Tasks
+                    </a>
+                </div>
+            <% } %>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold mb-4">Easy Organization</h3>
+                    <p class="text-gray-600">Keep all your tasks organized in one place</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold mb-4">Track Progress</h3>
+                    <p class="text-gray-600">Monitor your task completion status</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold mb-4">Collaborate</h3>
+                    <p class="text-gray-600">Share tasks with team members</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
